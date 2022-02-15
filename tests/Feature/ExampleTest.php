@@ -4,7 +4,6 @@ namespace Tests\Feature;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
-use Illuminate\Support\Facades\Log;
 
 class ExampleTest extends TestCase
 {
@@ -13,7 +12,7 @@ class ExampleTest extends TestCase
      *
      * @return void
      */
-    public function testTheApplicationReturnsASuccessfulResponse()
+    public function testExample()
     {
         $response = $this->get('/');
 
