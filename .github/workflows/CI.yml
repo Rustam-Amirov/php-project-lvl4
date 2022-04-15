@@ -48,9 +48,18 @@ jobs:
       - name: make setup
         run: make setup
 
-      - name: Run linter
-        # Run Linter
-        run: make lint
+      - name: Run Migration
+        run: make migrate
+        env:
+          DB_PORT: ${{ job.services.postgres.ports[5432] }}
 
-      - name: Run tests
-        run: make test
+      - name: Run test & publish code coverage
+        uses: paambaati/codeclimate-action@v2.6.0
+        # Add Code Climate secret key
+        env:
+          DB_PORT: ${{ job.services.postgres.ports[5432] }}
+          CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
+        with:
+          coverageCommand: make test-coverage
+          coverageLocations: rustam-amirov/build/logs/clover.xml:clover
+          debug: true
