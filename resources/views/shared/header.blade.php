@@ -12,7 +12,7 @@
                     <a class="nav-link " href="https://php-task-manager-ru.hexlet.app/tasks">Задачи</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link " href="https://php-task-manager-ru.hexlet.app/task_statuses">Статусы</a>
+                    <a class="nav-link " href="{{route('task_statuses.index')}}">Статусы</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link " href="https://php-task-manager-ru.hexlet.app/labels">Метки</a>

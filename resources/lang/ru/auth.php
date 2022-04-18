@@ -13,8 +13,9 @@ return [
     |
     */
 
-    'failed' => 'Enter the correct username and password',
-    'password' => 'Enter the correct username and password',
+    'failed' => 'Введите правильные имя пользователя и пароль',
+    'password' => 'Введите правильные имя пользователя и пароль',
     'throttle' => 'Too many login attempts. Please try again in :seconds seconds.',
-    'auth_check' => 'you are not authorized to do this'
+    'auth_check' => 'У вас нет прав для данного действия'
+
 ];
