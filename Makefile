@@ -12,6 +12,7 @@ watch:
 
 migrate:
 	php artisan migrate
+	php artisan db:seed
 
 console:
 	php artisan tinker

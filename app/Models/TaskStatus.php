@@ -9,6 +9,13 @@ class TaskStatus extends Model
 {
     use HasFactory;
 
+    public static $defaultTaskStatuses = [
+        1 => 'новый',
+        2 => 'в работе',
+        3 => 'на тестировании',
+        4 => 'завершен',
+    ];
+
     public $timestamps = false;
 
     protected $dates = [

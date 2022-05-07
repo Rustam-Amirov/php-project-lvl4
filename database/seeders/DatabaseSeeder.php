@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use App\Models\TaskStatus;
 
 class DatabaseSeeder extends Seeder
 {
@@ -14,11 +15,12 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        DB::table('task_statuses')->truncate();
         DB::table('task_statuses')->insert([
-            ['name' => 'новый'],
-            ['name' => 'в работе'],
-            ['name' => 'на тестировании'],
-            ['name' => 'завершен'],
+            ['id' => 1, 'name' => TaskStatus::$defaultTaskStatuses[1]],
+            ['id' => 2, 'name' => TaskStatus::$defaultTaskStatuses[2]],
+            ['id' => 3, 'name' => TaskStatus::$defaultTaskStatuses[3]],
+            ['id' => 4, 'name' => TaskStatus::$defaultTaskStatuses[4]],
         ],);
     }
 }
