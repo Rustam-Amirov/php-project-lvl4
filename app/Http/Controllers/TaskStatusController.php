@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\TaskStatus;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Auth\Access\AuthorizationException;
 
 class TaskStatusController extends Controller
 {
@@ -25,10 +26,13 @@ class TaskStatusController extends Controller
      */
     public function create()
     {
-        if (!Auth::check()) {
+        try {
+            $this->authorize('create', TaskStatus::class);
+        } catch (AuthorizationException $e) {
             flash(__('auth.auth_check'))->error();
             return redirect(route('task_statuses.index'));
         }
+
         return view('task_statuses.create');
     }
 
@@ -40,10 +44,13 @@ class TaskStatusController extends Controller
      */
     public function store(Request $request)
     {
-        if (!Auth::check()) {
+        try {
+            $this->authorize('create', TaskStatus::class);
+        } catch (AuthorizationException $e) {
             flash(__('auth.auth_check'))->error();
             return redirect(route('task_statuses.index'));
         }
+
         $request->validate([
             'name' => ['required', 'string', 'max:255', 'min:1'],
         ]);
@@ -62,10 +69,13 @@ class TaskStatusController extends Controller
      */
     public function edit(TaskStatus $taskStatus)
     {
-        if (!Auth::check()) {
+        try {
+            $this->authorize('update', $taskStatus);
+        } catch (AuthorizationException $e) {
             flash(__('auth.auth_check'))->error();
             return redirect(route('task_statuses.index'));
         }
+
         return view('task_statuses.edit', ['taskStatus' => $taskStatus]);
     }
 
@@ -78,10 +88,13 @@ class TaskStatusController extends Controller
      */
     public function update(Request $request, TaskStatus $taskStatus)
     {
-        if (!Auth::check()) {
+        try {
+            $this->authorize('update', $taskStatus);
+        } catch (AuthorizationException $e) {
             flash(__('auth.auth_check'))->error();
             return redirect(route('task_statuses.index'));
         }
+
         $request->validate([
             'name' => ['required', 'string', 'max:255', 'min:1'],
         ]);
@@ -101,7 +114,9 @@ class TaskStatusController extends Controller
      */
     public function destroy(TaskStatus $taskStatus)
     {
-        if (!Auth::check()) {
+        try {
+            $this->authorize('delete', $taskStatus);
+        } catch (AuthorizationException $e) {
             flash(__('auth.auth_check'))->error();
             return redirect(route('task_statuses.index'));
         }

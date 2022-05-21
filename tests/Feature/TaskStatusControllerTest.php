@@ -40,11 +40,8 @@ class TaskStatusControllerTest extends TestCase
 
     public function testCreateOk()
     {
-        $this->post('/login', [
-            'email' => $this->user->email,
-            'password' => 'password',
-        ]);
-        $response = $this->get('/task_statuses/create');
+        $response = $this->actingAs($this->user)
+                         ->get('/task_statuses/create');
 
         $response->assertStatus(200);
     }
@@ -53,38 +50,27 @@ class TaskStatusControllerTest extends TestCase
     public function testEditOk()
     {
         $taskStatus = TaskStatus::factory()->create();
-        $response = $this->get("/task_statuses/$taskStatus->id/edit");
-
-        $response->assertStatus(302);
-
-        $response->assertRedirect('/task_statuses');
-    }
-
-
-    public function testEditYesFail()
-    {
-        $this->post('/login', [
-            'email' => $this->user->email,
-            'password' => 'password',
-        ]);
-        $taskStatus = TaskStatus::factory()->create();
-        $response = $this->get("/task_statuses/$taskStatus->id/edit");
+        $response = $this->actingAs($this->user)
+                         ->get("/task_statuses/$taskStatus->id/edit");
 
         $response->assertStatus(200);
     }
 
 
+    public function testEditFail()
+    {
+        $taskStatus = TaskStatus::factory()->create();
+        $response = $this->get("/task_statuses/$taskStatus->id/edit");
+
+        $response->assertStatus(302);
+    }
+
+
     public function testStoreOk()
     {
-        $this->post('/login', [
-            'email' => $this->user->email,
-            'password' => 'password',
-        ]);
-
         $name = 'qwerty';
-        $response = $this->post('/task_statuses', [
-            'name' => $name
-        ]);
+        $response = $this->actingAs($this->user)
+                         ->post('/task_statuses', ['name' => $name]);
 
         $this->assertDatabaseHas('task_statuses', [
             'name' => $name,
@@ -111,13 +97,10 @@ class TaskStatusControllerTest extends TestCase
 
     public function testUpdateOk()
     {
-        $this->post('/login', [
-            'email' => $this->user->email,
-            'password' => 'password',
-        ]);
         $taskStatus = TaskStatus::factory()->create();
         $name = 'newName';
-        $response = $this->put("/task_statuses/$taskStatus->id", [
+        $response = $this->actingAs($this->user)
+                        ->put("/task_statuses/$taskStatus->id", [
             'name' => $name
         ]);
 
@@ -145,14 +128,11 @@ class TaskStatusControllerTest extends TestCase
 
     public function testDestroyOk()
     {
-        $this->post('/login', [
-            'email' => $this->user->email,
-            'password' => 'password',
-        ]);
         $taskStatus = TaskStatus::factory()->create();
 
         $name = $taskStatus->name;
-        $response = $this->delete("/task_statuses/$taskStatus->id");
+        $response = $this->actingAs($this->user)
+                         ->delete("/task_statuses/$taskStatus->id");
 
         $this->assertDatabaseMissing('task_statuses', [
             'name' => $name,

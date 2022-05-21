@@ -5,6 +5,7 @@
 @section('main')
     <main class="container py-4">
         <h1 class="mb-5">Задачи</h1>
+        @include('flash::message')
         <div class="d-flex mb-3">
             <div>
                 <form method="GET" action="{{route('tasks.index')}}" accept-charset="UTF-8">
@@ -49,43 +50,41 @@
                     <th>ID</th>
                     <th>Статус</th>
                     <th>Имя</th>
-                    <th>Автор</th> <th>Исполнитель</th>
+                    <th>Автор</th> 
+                    <th>Исполнитель</th>
                     <th>Дата создания</th>
-                    <th>Действия</th>
+                    @if (!auth()->guest())
+                        <th>Действия</th>
+                    @endif
                 </tr>
             </thead>
             <tbody>
+                @foreach($tasks as $task)
                 <tr>
-                    <td>1</td>
-                    <td>завершена</td>
+                    <td>{{$task->id}}</td>
+                    <td>{{$task->status->name}}</td>
                     <td>
-                        <a class="text-decoration-none" href="https://php-task-manager-ru.hexlet.app/tasks/1">
-                            Исправить ошибку в какой-нибудь строке
+                        <a class="text-decoration-none" href="{{route('tasks.show', $task->id)}}">
+                            {{$task->name}}
                         </a>
                     </td>
-                    <td>Яковлев Антонин Романович</td>
-                    <td>Лаврентий Иванович Назаров</td>
-                    <td>05.04.2022</td>
+                    <td>{{$task->createdUser->name}}</td>
+                    <td>{{$task->assignedUser->name}}</td>
+                    <td>{{$task->created_at->isoFormat('DD.MM.YYYY')}}</td>
                     <td>
-                        <a class="text-decoration-none" href="https://php-task-manager-ru.hexlet.app/tasks/1/edit">
-                            Изменить</a>
+                    @can('delete', $task)
+                        <a class="text-danger text-decoration-none" href="{{route('tasks.destroy', $task->id)}}" data-confirm="Вы уверены?" data-method="delete">Удалить</a>
+                    @endcan
+                    @can('update', $task)
+                        <a class="text-decoration-none" href="{{route('tasks.edit', $task->id)}}">Изменить</a>
+                    @endcan
                     </td>
                 </tr>
+                @endforeach
 
             </tbody>
         </table>
-    <nav>
-        <ul class="pagination">
-            <li class="page-item disabled" aria-disabled="true" aria-label="« Previous">
-                <span class="page-link" aria-hidden="true">‹</span>
-                </li>
-            <li class="page-item active" aria-current="page"><span class="page-link">1</span></li>
-            <li class="page-item"><a class="page-link" href="https://php-task-manager-ru.hexlet.app/tasks?page=2">2</a></li>
-            <li class="page-item">
-                <a class="page-link" href="https://php-task-manager-ru.hexlet.app/tasks?page=2" rel="next" aria-label="Next »">›</a>
-            </li>
-        </ul>
-    </nav>
+        {{$tasks->links()}}
 </main>
 
 @endsection

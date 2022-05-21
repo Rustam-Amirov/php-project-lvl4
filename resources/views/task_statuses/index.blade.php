@@ -26,12 +26,12 @@
                     <td>{{$taskStatus->id}}</td>
                     <td>{{$taskStatus->name}}</td>
                     <td>{{$taskStatus->created_at->format('d.m.Y')}}</td>
-                @if (!auth()->guest())
+                @can('delete', $taskStatus)
                     <td>
                         <a class="text-danger text-decoration-none" href="{{route('task_statuses.destroy', ['_token' => csrf_token(), 'task_status' => $taskStatus])}}" data-confirm="Вы уверены?" data-method="delete">Удалить</a>
                         <a class="text-decoration-none" href="{{route('task_statuses.edit', ['task_status' => $taskStatus])}}">Изменить</a>
                     </td>
-                @endif
+                @endcan
                 </tr>
                 @endforeach
             </tbody>
