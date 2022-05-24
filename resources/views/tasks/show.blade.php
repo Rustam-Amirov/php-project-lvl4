@@ -15,7 +15,9 @@
     <p>Описание: {{$task->description}}</p>
     <p>Метки:</p>
         <ul>
-            <li>дубликат</li>
+            @foreach ($task->labels as $label)
+                <li>{{$label->name}}</li>
+            @endforeach
         </ul>
 </main>
 @endsection

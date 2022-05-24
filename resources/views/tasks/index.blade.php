@@ -73,7 +73,7 @@
                     <td>{{$task->created_at->isoFormat('DD.MM.YYYY')}}</td>
                     <td>
                     @can('delete', $task)
-                        <a class="text-danger text-decoration-none" href="{{route('tasks.destroy', $task->id)}}" data-confirm="Вы уверены?" data-method="delete">Удалить</a>
+                        <a class="text-danger text-decoration-none" href="{{route('tasks.destroy', ['_token' => csrf_token(), 'task' => $task->id])}}" data-confirm="Вы уверены?" data-method="delete">Удалить</a>
                     @endcan
                     @can('update', $task)
                         <a class="text-decoration-none" href="{{route('tasks.edit', $task->id)}}">Изменить</a>

@@ -5,6 +5,7 @@ namespace Tests\Feature;
 use App\Models\User;
 use App\Models\TaskStatus;
 use App\Models\Task;
+use App\Models\Label;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
@@ -109,12 +110,14 @@ class TaskControllerTest extends TestCase
     {
         $status = TaskStatus::factory()->create();
         $task = Task::factory()->create();
+        $label = Label::factory()->count(3)->make();
         $name = 'newName';
         $response = $this->actingAs($this->user)->put("/tasks/$task->id", [
             'name' => $name,
             'description' => 'new description',
             'status_id' => $status->id,
-            'assigned_to_id' => $this->user->id
+            'assigned_to_id' => $this->user->id,
+            'labels' => [1,2]
         ]);
 
         $this->assertDatabaseHas('tasks', [

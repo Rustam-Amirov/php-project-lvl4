@@ -7,8 +7,9 @@ use App\Models\TaskStatus;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Gate;
 use Illuminate\Auth\Access\AuthorizationException;
+use App\Models\Label;
+use App\Models\TaskLabels;
 
 class TaskController extends Controller
 {
@@ -37,7 +38,8 @@ class TaskController extends Controller
         }
         return view('tasks.create', [
             'task_statuses' => TaskStatus::all(),
-            'users' => User::all()
+            'users' => User::all(),
+            'labels' => Label::all()
         ]);
     }
 
@@ -55,22 +57,29 @@ class TaskController extends Controller
             flash(__('auth.auth_check'))->error();
             return redirect(route('tasks.index'));
         }
+
         $request->validate([
             'name' => ['required', 'string', 'max:255', 'min:1'],
             'status_id' => ['required', 'integer', 'min:1', 'exists:task_statuses,id'],
             'description' => ['max:255'],
-            'labels' => [],
+            'labels' => [''],
             'assigned_to_id' => ['integer', 'exists:users,id']
         ]);
 
-        Task::create([
+        $task = Task::create([
             'name' => $request->name,
             'status_id' => $request->status_id,
             'description' => $request->description,
             'assigned_to_id'  => $request->assigned_to_id,
             'created_by_id'  => Auth::id(),
         ]);
-
+        foreach ($request->labels as $label) {
+            TaskLabels::create([
+                'task_id' => $task->id,
+                'label_id' => $label,
+                'label_type' =>  get_class($task)
+            ]);
+        }
         flash(__('task.create'))->success();
         return redirect(route('tasks.index'));
     }
@@ -104,7 +113,8 @@ class TaskController extends Controller
         return view('tasks.edit', [
             'task' => $task,
             'task_statuses' => TaskStatus::all(),
-            'users' => User::all()
+            'users' => User::all(),
+            'labels' => Label::all()
         ]);
     }
 

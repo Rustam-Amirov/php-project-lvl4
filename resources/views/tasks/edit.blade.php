@@ -41,7 +41,12 @@
 
             <div class="form-group mb-3">
                 <label for="labels">Метки</label>
-                <select class="form-control" multiple="" name="labels[]"><option value=""></option><option value="1">ошибка</option><option value="2">документация</option><option value="3" selected="selected">дубликат</option><option value="4">доработка</option></select>
+                <select class="form-control" multiple="" name="labels[]">
+                    <option value=""></option>
+                    @foreach ($labels as $label)
+                        <option value="{{$label->id}}" @if (!$task->labels->firstWhere('id', $label->id))selected @endif>{{$label->name}}</option>
+                    @endforeach
+                </select>
             </div>
 
             <input class="btn btn-primary mt-3" type="submit" value="Обновить">
