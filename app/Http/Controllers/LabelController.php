@@ -88,7 +88,7 @@ class LabelController extends Controller
             $this->authorize('update', $label);
         } catch (AuthorizationException $e) {
             flash(__('auth.auth_check'))->error();
-            return redirect(route('label.index'));
+            return redirect(route('labels.index'));
         }
 
         return view('labels.edit', ['label' => $label]);
@@ -107,7 +107,7 @@ class LabelController extends Controller
             $this->authorize('update', $label);
         } catch (AuthorizationException $e) {
             flash(__('auth.auth_check'))->error();
-            return redirect(route('label.index'));
+            return redirect(route('labels.index'));
         }
 
         $request->validate([
