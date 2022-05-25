@@ -15,9 +15,9 @@ class LabelsTasks extends Migration
     {
         Schema::create('task_labels', function (Blueprint $table) {
             $table->id();
-            $table->integer('label_id');
             $table->integer('task_id');
-            $table->string("label_type")->nullable();
+            $table->integer('label_id');
+            $table->string("task_type")->nullable();
         });
     }
 

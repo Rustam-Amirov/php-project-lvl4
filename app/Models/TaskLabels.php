@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class TaskLabels extends Model
 {
     use HasFactory;
+
     protected $table = 'task_labels';
 
     public $timestamps = false;

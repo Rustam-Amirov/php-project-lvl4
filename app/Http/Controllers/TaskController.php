@@ -9,7 +9,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Auth\Access\AuthorizationException;
 use App\Models\Label;
-use App\Models\TaskLabels;
+use Exception;
+use Illuminate\Support\Facades\DB;
 
 class TaskController extends Controller
 {
@@ -62,24 +63,30 @@ class TaskController extends Controller
             'name' => ['required', 'string', 'max:255', 'min:1'],
             'status_id' => ['required', 'integer', 'min:1', 'exists:task_statuses,id'],
             'description' => ['max:255'],
-            'labels' => [''],
+            'labels.*' => ['integer', 'exists:labels,id'],
             'assigned_to_id' => ['integer', 'exists:users,id']
         ]);
 
-        $task = Task::create([
-            'name' => $request->name,
-            'status_id' => $request->status_id,
-            'description' => $request->description,
-            'assigned_to_id'  => $request->assigned_to_id,
-            'created_by_id'  => Auth::id(),
-        ]);
-        foreach ($request->labels as $label) {
-            TaskLabels::create([
-                'task_id' => $task->id,
-                'label_id' => $label,
-                'label_type' =>  get_class($task)
+        try {
+            DB::beginTransaction();
+            $task = Task::create([
+                'name' => $request->name,
+                'status_id' => $request->status_id,
+                'description' => $request->description,
+                'assigned_to_id'  => $request->assigned_to_id,
+                'created_by_id'  => Auth::id(),
             ]);
+            if (!empty($request->labels) > 0) {
+                foreach ($request->labels as $label) {
+                    $label = Label::findOrFail($label);
+                    $task->labels()->save($label);
+                }
+            }
+            DB::commit();
+        } catch (Exception $e) {
+            DB::rollBack();
         }
+
         flash(__('task.create'))->success();
         return redirect(route('tasks.index'));
     }
@@ -142,10 +149,17 @@ class TaskController extends Controller
             'assigned_to_id' => ['integer', 'exists:users,id']
         ]);
 
-        $task->name = $request->name;
-        $task->status_id = $request->status_id;
-        $task->description = $request->description;
-        $task->update();
+        try {
+            DB::beginTransaction();
+            $task->name = $request->name;
+            $task->status_id = $request->status_id;
+            $task->description = $request->description;
+            $task->update();
+            $task->labels()->sync($request->labels);
+            DB::commit();
+        } catch (Exception $e) {
+            DB::rollBack();
+        }
 
         flash(__('task.update'))->success();
         return redirect(route('tasks.index'));

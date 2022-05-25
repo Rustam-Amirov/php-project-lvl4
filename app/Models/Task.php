@@ -44,6 +44,6 @@ class Task extends Model
 
     public function labels()
     {
-        return $this->morphToMany(Label::class, 'label','task_labels');
+        return $this->morphToMany(Label::class, 'task', 'task_labels');
     }
 }
