@@ -48,7 +48,7 @@ class Task extends Model
         return $this->morphToMany(Label::class, 'task', 'task_labels');
     }
 
-    public function scopeStatusId(Builder $query, $status_id) 
+    public function scopeStatusId(Builder $query, $status_id)
     {
         return $query->where('status_id', '=', $status_id);
     }
