@@ -13,7 +13,8 @@
         "laravel/sanctum": "^2.11",
         "laravel/tinker": "^2.5",
         "laravel/ui": "^3.4",
-        "rollbar/rollbar-laravel": "dev-master"
+        "rollbar/rollbar-laravel": "dev-master",
+        "spatie/laravel-query-builder": "*"
     },
     "require-dev": {
         "facade/ignition": "^2.5",

@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\TaskStatus;
 use App\Models\User;
+use Illuminate\Database\Eloquent\Builder;
 
 class Task extends Model
 {
@@ -45,5 +46,10 @@ class Task extends Model
     public function labels()
     {
         return $this->morphToMany(Label::class, 'task', 'task_labels');
+    }
+
+    public function scopeStatusId(Builder $query, $status_id) 
+    {
+        return $query->where('status_id', '=', $status_id);
     }
 }

@@ -3,7 +3,6 @@
 namespace Tests\Feature;
 
 use App\Models\User;
-use App\Models\TaskStatus;
 use App\Models\Label;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;

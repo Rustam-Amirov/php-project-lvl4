@@ -13,22 +13,25 @@
                         <div class="col">
                             <select class="form-select me-2" name="filter[status_id]">
                                 <option selected="selected" value="">Статус</option>
-                                <option value="1">новая</option>
-                                <option value="2">завершена</option>
-                                <option value="3">выполняется</option>
-                                <option value="4">в архиве</option></select>
+                                @foreach($task_statuses as $status)
+                                    <option value="{{$status->id}}">{{$status->name}}</option>
+                                @endforeach
                             </select>
                         </div>
                         <div class="col">
                             <select class="form-select me-2" name="filter[created_by_id]">
                                 <option selected="selected" value="">Автор</option>
-                                <option value="1">Алёна Владимировна Ивановаа</option>
+                                @foreach($users as $user)
+                                    <option value="{{$user->id}}">{{$user->name}}</option>
+                                @endforeach
                             </select>
                         </div>
                         <div class="col">
                             <select class="form-select me-2" name="filter[assigned_to_id]">
                                 <option selected="selected" value="">Исполнитель</option>
-                                <option value="1">Алёна Владимировна Ивановаа</option>
+                                @foreach($users as $user)
+                                    <option value="{{$user->id}}">{{$user->name}}</option>
+                                @endforeach
                             </select>
                         </div>
                         <div class="col">

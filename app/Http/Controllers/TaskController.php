@@ -11,6 +11,8 @@ use Illuminate\Auth\Access\AuthorizationException;
 use App\Models\Label;
 use Exception;
 use Illuminate\Support\Facades\DB;
+use Spatie\QueryBuilder\QueryBuilder;
+use Spatie\QueryBuilder\AllowedFilter;
 
 class TaskController extends Controller
 {
@@ -21,7 +23,19 @@ class TaskController extends Controller
      */
     public function index()
     {
-        return view('tasks.index')->with('tasks', Task::paginate(15));
+        $tasks = QueryBuilder::for(Task::class)
+            ->allowedFilters([
+                AllowedFilter::exact('status_id', null, false),
+                AllowedFilter::exact('created_by_id', null, false),
+                AllowedFilter::exact('assigned_to_id', null, false)
+            ])
+            ->paginate(15);
+
+        return view('tasks.index', [
+            'tasks' => $tasks,
+            'task_statuses' => TaskStatus::all() ? TaskStatus::all() : [],
+            'users' => User::all(),
+        ]);
     }
 
     /**
