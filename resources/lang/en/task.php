@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'create' => 'Задача успешно создана',
-    'update' => 'Задача успешно изменена',
-    'delete' => 'Задача успешно удалена', 
+    'create' => 'Task created successfully',
+    'update' => 'Task updated successfully',
+    'delete' => 'Task deleted successfully',
 ];
