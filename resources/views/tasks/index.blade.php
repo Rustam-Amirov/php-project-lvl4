@@ -4,7 +4,7 @@
 
 @section('main')
     <main class="container py-4">
-        <h1 class="mb-5">Задачи</h1>
+        <h1 class="mb-5">{{__('task.tasks')}}</h1>
         @include('flash::message')
         <div class="d-flex mb-3">
             <div>
@@ -12,7 +12,7 @@
                     <div class="row g-1">
                         <div class="col">
                             <select class="form-select me-2" name="filter[status_id]">
-                                <option selected="selected" value="">Статус</option>
+                                <option selected="selected" value="">{{__('task.t_status')}}</option>
                                 @foreach($task_statuses as $status)
                                     <option value="{{$status->id}}">{{$status->name}}</option>
                                 @endforeach
@@ -20,7 +20,7 @@
                         </div>
                         <div class="col">
                             <select class="form-select me-2" name="filter[created_by_id]">
-                                <option selected="selected" value="">Автор</option>
+                                <option selected="selected" value="">{{__('task.t_created_by')}}</option>
                                 @foreach($users as $user)
                                     <option value="{{$user->id}}">{{$user->name}}</option>
                                 @endforeach
@@ -28,14 +28,14 @@
                         </div>
                         <div class="col">
                             <select class="form-select me-2" name="filter[assigned_to_id]">
-                                <option selected="selected" value="">Исполнитель</option>
+                                <option selected="selected" value="">{{__('task.t_assigned_to')}}</option>
                                 @foreach($users as $user)
                                     <option value="{{$user->id}}">{{$user->name}}</option>
                                 @endforeach
                             </select>
                         </div>
                         <div class="col">
-                            <input class="btn btn-outline-primary me-2" type="submit" value="Применить">
+                            <input class="btn btn-outline-primary me-2" type="submit" value="{{__('task.filter_button')}}">
                         </div>
                 
                     </div>
@@ -43,21 +43,21 @@
             </div>
             @if (!auth()->guest())
             <div class="ms-auto">
-                <a href="{{route('tasks.create')}}" class="btn btn-primary ml-auto">Создать задачу</a>
+                <a href="{{route('tasks.create')}}" class="btn btn-primary ml-auto">{{__('task.create_task_button')}}</a>
             </div>
             @endif
         </div>
         <table class="table me-2">
             <thead>
                 <tr>
-                    <th>ID</th>
-                    <th>Статус</th>
-                    <th>Имя</th>
-                    <th>Автор</th> 
-                    <th>Исполнитель</th>
-                    <th>Дата создания</th>
+                    <th>{{__('task.t_ID')}}</th>
+                    <th>{{__('task.t_status')}}</th>
+                    <th>{{__('task.t_name')}}</th>
+                    <th>{{__('task.t_created_by')}}</th> 
+                    <th>{{__('task.t_assigned_to')}}</th>
+                    <th>{{__('task.t_date_create')}}</th>
                     @if (!auth()->guest())
-                        <th>Действия</th>
+                        <th>{{__('task.t_actions')}}</th>
                     @endif
                 </tr>
             </thead>
@@ -76,10 +76,10 @@
                     <td>{{$task->created_at->isoFormat('DD.MM.YYYY')}}</td>
                     <td>
                     @can('delete', $task)
-                        <a class="text-danger text-decoration-none" href="{{route('tasks.destroy', ['_token' => csrf_token(), 'task' => $task->id])}}" data-confirm="Вы уверены?" data-method="delete">Удалить</a>
+                        <a class="text-danger text-decoration-none" href="{{route('tasks.destroy', ['_token' => csrf_token(), 'task' => $task->id])}}" data-confirm="Вы уверены?" data-method="delete">{{__('task.del_button')}}</a>
                     @endcan
                     @can('update', $task)
-                        <a class="text-decoration-none" href="{{route('tasks.edit', $task->id)}}">Изменить</a>
+                        <a class="text-decoration-none" href="{{route('tasks.edit', $task->id)}}">{{__('task.change_button')}}</a>
                     @endcan
                     </td>
                 </tr>

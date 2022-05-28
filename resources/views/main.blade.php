@@ -6,9 +6,9 @@
     <main class="container py-4">
         <div class="p-5 mb-4 bg-light border rounded-3">
             <div class="container-fluid py-5">
-                <h1 class="display-5 fw-bold">Привет от Хекслета!</h1>
-                <p class="col-md-8 fs-4">Практические курсы по программированию</p>
-                <button href="https://hexlet.io" class="btn btn-primary btn-lg" type="button">Узнать больше</button>
+                <h1 class="display-5 fw-bold">{{__('main.title')}}</h1>
+                <p class="col-md-8 fs-4">{{__('main.description')}}</p>
+                <button onclick="location.href='https://github.com/Rustam-Amirov'" class="btn btn-primary btn-lg" type="button">{{__('main.link')}}</button>
             </div>
         </div>
     </main>

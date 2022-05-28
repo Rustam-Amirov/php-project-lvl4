@@ -5,15 +5,15 @@
 @section('main')
 <main class="container py-4">
     <h1 class="mb-5">
-        Просмотр задачи: {{$task->name}}
+        {{__('task.show_task')}}: {{$task->name}}
         @if (!auth()->guest())
             <a href="{{route('tasks.edit', $task->id)}}">⚙</a>
         @endif
     </h1>
-    <p>Имя: {{$task->name}}</p>
-    <p>Статус: {{$task->status->name}}</p>
-    <p>Описание: {{$task->description}}</p>
-    <p>Метки:</p>
+    <p>{{__('task.t_name')}}: {{$task->name}}</p>
+    <p>{{__('task.t_status')}}: {{$task->status->name}}</p>
+    <p>{{__('task.t_description')}}: {{$task->description}}</p>
+    <p>{{__('task.t_labels')}}:</p>
         <ul>
             @foreach ($task->labels as $label)
                 <li>{{$label->name}}</li>

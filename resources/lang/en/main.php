@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'create' => 'Задача успешно создана',
-    'update' => 'Задача успешно изменена',
-    'delete' => 'Задача успешно удалена', 
+    'title' => 'Task Manager',
+    'description' => "This is Rustam Amirov's Pet-project",
+    'link' => 'Link to Github'
 ];
