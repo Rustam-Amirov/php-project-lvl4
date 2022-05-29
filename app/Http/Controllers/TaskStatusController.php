@@ -55,7 +55,8 @@ class TaskStatusController extends Controller
         $validator = Validator::make($request->all(),[
             'name' => ['required', 'string', 'max:255', 'min:1', 'unique:task_statuses'], 
         ],[
-            'unique' => __('taskStatus.unique')
+            'unique' => __('taskStatus.unique'),
+            'required' => __('taskStatus.required')
         ]);
         $validator->validate();
 
@@ -102,7 +103,8 @@ class TaskStatusController extends Controller
         $validator = Validator::make($request->all(),[
             'name' => ['required', 'string', 'max:255', 'min:1', 'unique:task_statuses'], 
         ],[
-            'unique' => __('taskStatus.unique')
+            'unique' => __('taskStatus.unique'),
+            'required' => __('taskStatus.required')
         ]);
         $validator->validate();
 
