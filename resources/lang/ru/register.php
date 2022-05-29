@@ -7,5 +7,5 @@ return [
     'password' => 'Пароль',
     'confirm_password' => 'Подтвердите пароль',
     'button_register' => 'Зарегистрировать',
-    'exit' => 'Exit'
+    'exit' => 'Выход'
 ];
