@@ -52,7 +52,7 @@ class TaskStatusController extends Controller
         }
 
         $request->validate([
-            'name' => ['required', 'string', 'max:255', 'min:1'],
+            'name' => ['required', 'string', 'max:255', 'min:1', 'unique:task_statuses'],
         ]);
 
         TaskStatus::create(['name' => $request->name]);
@@ -96,7 +96,7 @@ class TaskStatusController extends Controller
         }
 
         $request->validate([
-            'name' => ['required', 'string', 'max:255', 'min:1'],
+            'name' => ['required', 'string', 'max:255', 'min:1', 'unique:task_statuses'],
         ]);
         $taskStatus->name = $request->name;
         $taskStatus->update();
