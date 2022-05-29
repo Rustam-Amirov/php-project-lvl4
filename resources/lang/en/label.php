@@ -17,4 +17,5 @@ return [
     'create_label' => 'Create label',
     'create_button' => 'Create',
     'update_button' => 'Update',
+    'required' => 'This field is mandatory',
 ];

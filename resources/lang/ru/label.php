@@ -17,4 +17,5 @@ return [
     'create_label' => 'Создать метку',
     'create_button' => 'Создать',
     'update_button' => 'Обновить',
+    'required' => 'Это обязательное поле'
 ];

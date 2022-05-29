@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Label;
 use Illuminate\Http\Request;
 use Illuminate\Auth\Access\AuthorizationException;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 class LabelController extends Controller
 {
@@ -51,10 +51,15 @@ class LabelController extends Controller
             flash(__('auth.auth_check'))->error();
             return redirect(route('labels.index'));
         }
-        $request->validate([
+
+        $validator = Validator::make($request->all(), [
             'name' => ['required', 'string', 'max:255', 'min:1'],
             'description' => ['max:255'],
+        ], [
+            'required' => __('label.required')
         ]);
+        $validator->validate();
+
 
         Label::create([
             'name' => $request->name,
@@ -110,10 +115,13 @@ class LabelController extends Controller
             return redirect(route('labels.index'));
         }
 
-        $request->validate([
+        $validator = Validator::make($request->all(), [
             'name' => ['required', 'string', 'max:255', 'min:1'],
             'description' => ['max:255'],
+        ], [
+            'required' => __('label.required')
         ]);
+        $validator->validate();
 
         $label->name = $request->name;
         $label->description = $request->description;

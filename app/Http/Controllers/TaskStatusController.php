@@ -52,9 +52,9 @@ class TaskStatusController extends Controller
             return redirect(route('task_statuses.index'));
         }
 
-        $validator = Validator::make($request->all(),[
-            'name' => ['required', 'string', 'max:255', 'min:1', 'unique:task_statuses'], 
-        ],[
+        $validator = Validator::make($request->all(), [
+            'name' => ['required', 'string', 'max:255', 'min:1', 'unique:task_statuses'],
+        ], [
             'unique' => __('taskStatus.unique'),
             'required' => __('taskStatus.required')
         ]);
@@ -100,9 +100,9 @@ class TaskStatusController extends Controller
             return redirect(route('task_statuses.index'));
         }
 
-        $validator = Validator::make($request->all(),[
-            'name' => ['required', 'string', 'max:255', 'min:1', 'unique:task_statuses'], 
-        ],[
+        $validator = Validator::make($request->all(), [
+            'name' => ['required', 'string', 'max:255', 'min:1', 'unique:task_statuses'],
+        ], [
             'unique' => __('taskStatus.unique'),
             'required' => __('taskStatus.required')
         ]);

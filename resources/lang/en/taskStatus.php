@@ -18,4 +18,5 @@ return [
     'create_button' => 'Create',
     'update_button' => 'Update',
     'unique' => 'A status with the same name already exists',
+    'required' => 'This field is mandatory'
 ];
