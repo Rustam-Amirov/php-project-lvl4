@@ -17,4 +17,5 @@ return [
     'change_button' => 'Изменить',
     'create_button' => 'Создать',
     'update_button' => 'Обновить',
+    'unique' => 'Статус с таким именем уже существует',
 ];

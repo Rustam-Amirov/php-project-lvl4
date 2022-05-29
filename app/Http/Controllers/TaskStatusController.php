@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\TaskStatus;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Auth\Access\AuthorizationException;
+use Illuminate\Support\Facades\Validator;
 
 class TaskStatusController extends Controller
 {
@@ -51,9 +52,12 @@ class TaskStatusController extends Controller
             return redirect(route('task_statuses.index'));
         }
 
-        $request->validate([
-            'name' => ['required', 'string', 'max:255', 'min:1', 'unique:task_statuses'],
+        $validator = Validator::make($request->all(),[
+            'name' => ['required', 'string', 'max:255', 'min:1', 'unique:task_statuses'], 
+        ],[
+            'unique' => __('taskStatus.unique')
         ]);
+        $validator->validate();
 
         TaskStatus::create(['name' => $request->name]);
 
@@ -95,9 +99,13 @@ class TaskStatusController extends Controller
             return redirect(route('task_statuses.index'));
         }
 
-        $request->validate([
-            'name' => ['required', 'string', 'max:255', 'min:1', 'unique:task_statuses'],
+        $validator = Validator::make($request->all(),[
+            'name' => ['required', 'string', 'max:255', 'min:1', 'unique:task_statuses'], 
+        ],[
+            'unique' => __('taskStatus.unique')
         ]);
+        $validator->validate();
+
         $taskStatus->name = $request->name;
         $taskStatus->update();
 

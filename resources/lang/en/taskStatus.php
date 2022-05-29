@@ -17,4 +17,5 @@ return [
     'change_button' => 'Change',
     'create_button' => 'Create',
     'update_button' => 'Update',
+    'unique' => 'A status with the same name already exists',
 ];
