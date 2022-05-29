@@ -53,10 +53,11 @@ class LabelController extends Controller
         }
 
         $validator = Validator::make($request->all(), [
-            'name' => ['required', 'string', 'max:255', 'min:1'],
+            'name' => ['required', 'string', 'max:255', 'min:1', 'unique:labels'],
             'description' => ['max:255'],
         ], [
-            'required' => __('label.required')
+            'required' => __('label.required'),
+            'unique' => __('label.unique')
         ]);
         $validator->validate();
 
@@ -116,10 +117,11 @@ class LabelController extends Controller
         }
 
         $validator = Validator::make($request->all(), [
-            'name' => ['required', 'string', 'max:255', 'min:1'],
+            'name' => ['required', 'string', 'max:255', 'min:1', 'unique:labels'],
             'description' => ['max:255'],
         ], [
-            'required' => __('label.required')
+            'required' => __('label.required'),
+            'unique' => __('label.unique')
         ]);
         $validator->validate();
 

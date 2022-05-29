@@ -18,4 +18,5 @@ return [
     'create_button' => 'Create',
     'update_button' => 'Update',
     'required' => 'This field is mandatory',
+    'unique' => 'A label with the same name already exists',
 ];
