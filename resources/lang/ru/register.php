@@ -6,6 +6,6 @@ return [
     'email' => 'Email',
     'password' => 'Пароль',
     'confirm_password' => 'Подтвердите пароль',
-    'button_register' => 'Зарегестрировать',
+    'button_register' => 'Зарегистрировать',
     'exit' => 'Exit'
 ];
