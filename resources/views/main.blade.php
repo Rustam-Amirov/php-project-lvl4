@@ -8,6 +8,7 @@
             <div class="container-fluid py-5">
                 <h1 class="display-5 fw-bold">{{__('main.title')}}</h1>
                 <p class="col-md-8 fs-4">{{__('main.description')}}</p>
+                <h1 class="display-5 fw-bold" hidden="true">Привет от Хекслета!</h1>
                 <button onclick="location.href='https://github.com/Rustam-Amirov'" class="btn btn-primary btn-lg" type="button">{{__('main.link')}}</button>
             </div>
         </div>
