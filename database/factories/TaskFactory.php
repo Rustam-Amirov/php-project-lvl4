@@ -5,6 +5,7 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use App\Models\TaskStatus;
 use App\Models\User;
+
 /**
  * @property string $name
  * @property integer $statud_id
