@@ -5,10 +5,16 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * @property string $name
+ */
 class TaskStatus extends Model
 {
     use HasFactory;
 
+    /**
+     * @var array
+     */
     public static $defaultTaskStatuses = [
         1 => 'новый',
         2 => 'в работе',

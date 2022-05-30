@@ -11,6 +11,9 @@ class LabelControllerTest extends TestCase
 {
     use RefreshDatabase;
 
+    /**
+     * @var User
+     */
     private $user;
 
     protected function setUp(): void

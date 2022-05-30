@@ -8,6 +8,13 @@ use App\Models\TaskStatus;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Builder;
 
+/**
+ * @property string $name
+ * @property integer $statud_id
+ * @property string $description
+ * @property \Illuminate\Support\Carbon|null $created_by_id
+ * @property integer $assigned_to_id
+ */
 class Task extends Model
 {
     use HasFactory;
@@ -48,7 +55,7 @@ class Task extends Model
         return $this->morphToMany(Label::class, 'task', 'task_labels');
     }
 
-    public function scopeStatusId(Builder $query, $status_id)
+    public function scopeStatusId(Builder $query, int $status_id)
     {
         return $query->where('status_id', '=', $status_id);
     }

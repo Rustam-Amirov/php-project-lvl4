@@ -34,7 +34,7 @@ class TaskController extends Controller
 
         return view('tasks.index', [
             'tasks' => $tasks,
-            'task_statuses' => TaskStatus::all() ? TaskStatus::all() : [],
+            'task_statuses' => TaskStatus::all(),
             'users' => User::all(),
         ]);
     }
@@ -95,7 +95,7 @@ class TaskController extends Controller
                 'assigned_to_id'  => $request->assigned_to_id,
                 'created_by_id'  => Auth::id(),
             ]);
-            if (!empty($request->labels) > 0) {
+            if (!empty($request->labels)) {
                 foreach ($request->labels as $label) {
                     $label = Label::findOrFail($label);
                     $task->labels()->save($label);

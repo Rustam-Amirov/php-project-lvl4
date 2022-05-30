@@ -13,29 +13,6 @@ class TaskPolicy
     use HandlesAuthorization;
 
     /**
-     * Determine whether the user can view any models.
-     *
-     * @param  \App\Models\User  $user
-     * @return \Illuminate\Auth\Access\Response|bool
-     */
-    public function viewAny(User $user)
-    {
-        //
-    }
-
-    /**
-     * Determine whether the user can view the model.
-     *
-     * @param  \App\Models\User  $user
-     * @param  \App\Models\Task  $task
-     * @return \Illuminate\Auth\Access\Response|bool
-     */
-    public function view(User $user, Task $task)
-    {
-        //
-    }
-
-    /**
      * Determine whether the user can create models.
      *
      * @param  \App\Models\User  $user
@@ -74,27 +51,4 @@ class TaskPolicy
         return Auth::check() && $user->id === $task->created_by_id;
     }
 
-    /**
-     * Determine whether the user can restore the model.
-     *
-     * @param  \App\Models\User  $user
-     * @param  \App\Models\Task  $task
-     * @return \Illuminate\Auth\Access\Response|bool
-     */
-    public function restore(User $user, Task $task)
-    {
-        //
-    }
-
-    /**
-     * Determine whether the user can permanently delete the model.
-     *
-     * @param  \App\Models\User  $user
-     * @param  \App\Models\Task  $task
-     * @return \Illuminate\Auth\Access\Response|bool
-     */
-    public function forceDelete(User $user, Task $task)
-    {
-        //
-    }
 }
