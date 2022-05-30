@@ -168,6 +168,7 @@ class TaskController extends Controller
             $task->name = $request->name;
             $task->status_id = $request->status_id;
             $task->description = $request->description;
+            $task->assigned_to_id = $request->assigned_to_id;
             $task->update();
             $task->labels()->sync($request->labels);
             DB::commit();
