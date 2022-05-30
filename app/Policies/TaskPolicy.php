@@ -50,5 +50,4 @@ class TaskPolicy
         //
         return Auth::check() && $user->id === $task->created_by_id;
     }
-
 }

@@ -47,5 +47,4 @@ class TaskStatusPolicy
         $exists = Task::where('status_id', $taskStatus->id)->exists();
         return !$exists && Auth::check();
     }
-
 }

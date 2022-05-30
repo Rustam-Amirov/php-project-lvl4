@@ -46,5 +46,4 @@ class LabelPolicy
         $cnt = $label->tasks()->count();
         return $cnt === 0 && Auth::check();
     }
-
 }
