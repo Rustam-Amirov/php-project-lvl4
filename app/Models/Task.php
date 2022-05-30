@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Builder;
 
 /**
  * App\Models\Task
- * 
+ *
  * @property string $name
  * @property integer $statud_id
  * @property string $description

@@ -8,7 +8,7 @@ use App\Models\Task;
 
 /**
  * App\Models\Label
- * 
+ *
  * @property string $name
  * @property string $description
  */
