@@ -3,7 +3,9 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-
+/** 
+* @property string $name
+*/
 class TaskStatusFactory extends Factory
 {
     /**
