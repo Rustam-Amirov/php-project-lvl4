@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 /**
+ * App\Models\TaskStatus
+ * 
  * @property string $name
  */
 class TaskStatus extends Model

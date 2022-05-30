@@ -133,7 +133,6 @@ class TaskStatusControllerTest extends TestCase
     {
         $taskStatus = TaskStatus::factory()->create();
 
-        /** @var string $name */
         $name = $taskStatus->name;
         $response = $this->actingAs($this->user)
                          ->delete("/task_statuses/$taskStatus->id");
@@ -149,7 +148,6 @@ class TaskStatusControllerTest extends TestCase
     {
         $taskStatus = TaskStatus::factory()->create();
 
-        /** @var string $name */
         $name = $taskStatus->name;
         $response = $this->delete("/task_statuses/$taskStatus->id");
 

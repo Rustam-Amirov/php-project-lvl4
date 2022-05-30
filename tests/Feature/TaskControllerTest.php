@@ -152,7 +152,6 @@ class TaskControllerTest extends TestCase
     public function testDestroyOk()
     {
         $task = Task::factory()->create();
-        /** @var integer $created_by_id */
         $created_id = $task->created_by_id;
         $user = User::find($created_id);
         $id = $task->id;
