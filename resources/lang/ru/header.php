@@ -4,7 +4,7 @@ return [
     'name_project' => 'Менеджер задач',
     'tasks' => 'Задачи',
     'statuses' => 'Статусы',
-    'labels' => 'Метки', 
+    'labels' => 'Метки',
     'login' => 'Вход',
     'logup' => 'Регистрация'
 ];

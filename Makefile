@@ -27,10 +27,10 @@ deploy:
 	git push heroku
 
 lint:
-	composer run-script phpcs  -- --standard=PSR12 app config routes tests
+	composer run-script phpcs  -- --standard=PSR12 app config routes tests resources/lang database/seeders
 
 lint-fix:
-	composer run-script phpcbf -- --standard=PSR12 app config routes tests
+	composer run-script phpcbf -- --standard=PSR12 app config routes tests resources/lang database/seeders
 
 install:
 	composer install 

@@ -21,6 +21,6 @@ class DatabaseSeeder extends Seeder
             ['id' => 2, 'name' => TaskStatus::$defaultTaskStatuses[2]],
             ['id' => 3, 'name' => TaskStatus::$defaultTaskStatuses[3]],
             ['id' => 4, 'name' => TaskStatus::$defaultTaskStatuses[4]],
-        ],);
+        ]);
     }
 }
