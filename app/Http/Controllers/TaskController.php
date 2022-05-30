@@ -95,7 +95,7 @@ class TaskController extends Controller
                 'assigned_to_id'  => $request->assigned_to_id,
                 'created_by_id'  => Auth::id(),
             ]);
-            if (!empty($request->labels)) {
+            if (is_array($request->labels)) {
                 foreach ($request->labels as $label) {
                     $label = Label::findOrFail($label);
                     $task->labels()->save($label);

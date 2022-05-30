@@ -12,7 +12,7 @@ use Illuminate\Database\Eloquent\Builder;
  * @property string $name
  * @property integer $statud_id
  * @property string $description
- * @property \Illuminate\Support\Carbon|null $created_by_id
+ * @property integer $created_by_id
  * @property integer $assigned_to_id
  */
 class Task extends Model

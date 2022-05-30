@@ -133,7 +133,9 @@ class LabelControllerTest extends TestCase
     {
         $label = Label::factory()->create();
 
+        /** @var string $name */
         $name = $label->name;
+
         $response = $this->actingAs($this->user)
                          ->delete("/labels/$label->id");
 
@@ -148,7 +150,9 @@ class LabelControllerTest extends TestCase
     {
         $label = Label::factory()->create();
 
+        /** @var string $name */
         $name = $label->name;
+
         $response = $this->delete("/labels/$label->id");
 
         $this->assertDatabaseHas('labels', [
