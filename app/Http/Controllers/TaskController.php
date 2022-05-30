@@ -13,6 +13,7 @@ use Exception;
 use Illuminate\Support\Facades\DB;
 use Spatie\QueryBuilder\QueryBuilder;
 use Spatie\QueryBuilder\AllowedFilter;
+use Illuminate\Support\Facades\Validator;
 
 class TaskController extends Controller
 {
@@ -73,13 +74,17 @@ class TaskController extends Controller
             return redirect(route('tasks.index'));
         }
 
-        $request->validate([
-            'name' => ['required', 'string', 'max:255', 'min:1'],
+        $validator = Validator::make($request->all(), [
+            'name' => ['required', 'string', 'max:255', 'min:1', 'unique:tasks'],
             'status_id' => ['required', 'integer', 'min:1', 'exists:task_statuses,id'],
             'description' => ['max:255'],
-            'labels.*' => ['integer', 'exists:labels,id'],
+            'labels' => [],
             'assigned_to_id' => ['integer', 'exists:users,id']
+        ], [
+            'required' => __('task.required'),
+            'unique' => __('task.unique'),
         ]);
+        $validator->validate();
 
         try {
             DB::beginTransaction();
@@ -155,13 +160,17 @@ class TaskController extends Controller
             return redirect(route('tasks.index'));
         }
 
-        $request->validate([
-            'name' => ['required', 'string', 'max:255', 'min:1'],
+        $validator = Validator::make($request->all(), [
+            'name' => ['required', 'string', 'max:255', 'min:1', 'unique:tasks'],
             'status_id' => ['required', 'integer', 'min:1', 'exists:task_statuses,id'],
             'description' => ['max:255'],
             'labels' => [],
             'assigned_to_id' => ['integer', 'exists:users,id']
+        ], [
+            'required' => __('task.required'),
+            'unique' => __('task.unique'),
         ]);
+        $validator->validate();
 
         try {
             DB::beginTransaction();

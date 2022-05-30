@@ -23,5 +23,7 @@ return [
     'update_button' => 'Update',
     'filter_button' => 'Apply',
     'show_task' => 'Show task',
-    't_labels' => 'Labels'
+    't_labels' => 'Labels',
+    'unique' => 'A status with the same name already exists',
+    'required' => 'This field is mandatory'
 ];
