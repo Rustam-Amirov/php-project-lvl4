@@ -56,7 +56,8 @@
         "phpcs": "phpcs",
         "phpcbf": "phpcbf",
         "phpunit": "phpunit",
-        "test": "phpunit tests"
+        "test": "phpunit tests",
+        "phpstan": "phpstan"
     },
     "extra": {
         "laravel": {

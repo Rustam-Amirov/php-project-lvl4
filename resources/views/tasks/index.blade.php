@@ -71,7 +71,7 @@
                             {{$task->name}}
                         </a>
                     </td>
-                    <td>{{$task->createdUser->name}}</td>
+                    <td>{{$task->createdBy->name}}</td>
                     <td>{{$task->assignedUser->name}}</td>
                     <td>{{$task->created_at->isoFormat('DD.MM.YYYY')}}</td>
                     <td>

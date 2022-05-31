@@ -133,13 +133,11 @@ class LabelControllerTest extends TestCase
     {
         $label = Label::factory()->create();
 
-        $name = $label->name;
-
         $response = $this->actingAs($this->user)
                          ->delete("/labels/$label->id");
 
         $this->assertDatabaseMissing('labels', [
-            'name' => $name,
+            'id' => $label->id,
         ]);
         $response->assertStatus(302);
     }
@@ -149,12 +147,10 @@ class LabelControllerTest extends TestCase
     {
         $label = Label::factory()->create();
 
-        $name = $label->name;
-
         $response = $this->delete("/labels/$label->id");
 
         $this->assertDatabaseHas('labels', [
-            'name' => $name,
+            'id' => $label->id,
         ]);
         $response->assertStatus(302);
     }

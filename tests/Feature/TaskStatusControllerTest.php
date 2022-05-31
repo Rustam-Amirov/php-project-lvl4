@@ -133,12 +133,11 @@ class TaskStatusControllerTest extends TestCase
     {
         $taskStatus = TaskStatus::factory()->create();
 
-        $name = $taskStatus->name;
         $response = $this->actingAs($this->user)
                          ->delete("/task_statuses/$taskStatus->id");
 
         $this->assertDatabaseMissing('task_statuses', [
-            'name' => $name,
+            'name' => $taskStatus->id,
         ]);
         $response->assertStatus(302);
     }
@@ -148,11 +147,10 @@ class TaskStatusControllerTest extends TestCase
     {
         $taskStatus = TaskStatus::factory()->create();
 
-        $name = $taskStatus->name;
         $response = $this->delete("/task_statuses/$taskStatus->id");
 
         $this->assertDatabaseHas('task_statuses', [
-            'name' => $name,
+            'id' => $taskStatus->id,
         ]);
         $response->assertStatus(302);
     }

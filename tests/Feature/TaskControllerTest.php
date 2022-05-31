@@ -152,8 +152,8 @@ class TaskControllerTest extends TestCase
     public function testDestroyOk()
     {
         $task = Task::factory()->create();
-        $created_id = $task->created_by_id;
-        $user = User::find($created_id);
+        $user = $task->createdBy;
+
         $id = $task->id;
         $response =  $this->actingAs($user)->delete("/tasks/$id");
 

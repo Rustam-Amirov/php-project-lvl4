@@ -47,7 +47,7 @@ class Task extends Model
         return $this->belongsTo(User::class, 'assigned_to_id');
     }
 
-    public function createdUser()
+    public function createdBy()
     {
         return $this->belongsTo(User::class, 'created_by_id');
     }
